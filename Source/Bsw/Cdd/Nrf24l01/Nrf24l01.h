@@ -13,6 +13,7 @@
 //                      Include
 //******************************************************************************
 #include <avr/io.h>
+#include "Std_Types.h"
 
 //******************************************************************************
 //                      Define
@@ -111,12 +112,12 @@
 //                      Declaration of global function
 //******************************************************************************
 extern void nrf24l01_init();
-extern uint8_t nrf24l01_getstatus();
-extern uint8_t nrf24l01_readready();
-extern void nrf24l01_read(uint8_t *data);
-extern uint8_t nrf24l01_write(uint8_t *data);
-extern void nrf24l01_setrxaddr(uint8_t channel, uint8_t *addr);
-extern void nrf24l01_settxaddr(uint8_t *addr);
+extern uint8 nrf24l01_getstatus();
+extern uint8 nrf24l01_readready();
+extern void nrf24l01_read(uint8 *data);
+extern uint8 nrf24l01_write(uint8 *data);
+extern void nrf24l01_setrxaddr(uint8 channel, uint8 *addr);
+extern void nrf24l01_settxaddr(uint8 *addr);
 
 //******************************************************************************
 //                      Declaration of inline function

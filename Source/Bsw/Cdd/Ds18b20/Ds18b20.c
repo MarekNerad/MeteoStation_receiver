@@ -44,8 +44,8 @@
 //******************************************************************************
 //                      Definition & Declaration of global variable
 //******************************************************************************
-signed char teplota;
-unsigned int desetiny;
+sint8 teplota;
+uint16 desetiny;
 
 //******************************************************************************
 //                      Definition & Declaration of static variable
@@ -58,9 +58,11 @@ unsigned int desetiny;
 //******************************************************************************
 //                      Definition of global function
 //******************************************************************************
+
 // provede reset a test prezence ds-18b20 na sbernici
-unsigned char ow_detect_presence(void) {
-   unsigned char out=1;              // vychozi navratova hodnota
+uint8 ow_detect_presence(void)
+{
+   uint8 out=1;              // vychozi navratova hodnota
    RX;                               // vychozi stav sbernice
    _delay_us(1000);                  // pro ustaleni
    TX;                               // bus low
@@ -73,7 +75,8 @@ unsigned char ow_detect_presence(void) {
 }
 
 // posle na sbernici log.1
-void ow_write_one(void) {
+void ow_write_one(void)
+{
    TX;                               // bus low
    _delay_us(6);                     // pauza definujici log.1
    RX;                               // uvolneni sbernice
@@ -81,7 +84,8 @@ void ow_write_one(void) {
 }
 
 // posle na sbernici log.0
-void ow_write_zero(void) {
+void ow_write_zero(void)
+{
    TX;                               // bus low
    _delay_us(60);                    // pauza definujici log.0
    RX;                               // uvolneni sbernice
@@ -89,7 +93,8 @@ void ow_write_zero(void) {
 }
 
 // precte jeden bit ze sbernice
-unsigned char ow_read_bit(void) {
+uint8 ow_read_bit(void)
+{
    unsigned char out=0;              // vychozi navratova hodnota bitu
    TX;                               // bus low
    _delay_us(6);                     // pauza pro stav cteni
@@ -101,8 +106,9 @@ unsigned char ow_read_bit(void) {
 }
 
 // odeslne na sbernici jeden byte. Odesila se prvni LSB
-void ow_write_byte(unsigned char tosend) {
-   int n=8;
+void ow_write_byte(unsigned char tosend)
+{
+   uint8 n=8;
    while(n--) {
       if(tosend&1) ow_write_one(); else ow_write_zero();
       tosend >>= 1;
@@ -110,8 +116,9 @@ void ow_write_byte(unsigned char tosend) {
 }
 
 // prijde ze sbernice jeden byte. Prijima jako prvni LSB.
-unsigned char ow_read_byte(void) {
-   int n=8, out=0;
+unsigned char ow_read_byte(void)
+{
+   uint8 n=8, out=0;
    while(n--) {
       out >>= 1;                       // bitovy posuv doprava
       if(ow_read_bit()) out |= 0x80;   // nastaveni nejvyssiho bitu na 1
@@ -122,8 +129,9 @@ unsigned char ow_read_byte(void) {
 // nacte teplotu z teplomeru a vrati ji ve formatu 1000+t*10
 // priklad: 23.5°C = 1235,  -10.5°C = 895
 // tento format lze snadneji zpracovavat nez nejake floaty (zerou moc pameti)
-void temp_in(void) {
-   unsigned char data_lo, data_hi;
+void temp_in(void)
+{
+   uint8 data_lo, data_hi;
    
    cli();
    ow_detect_presence();

@@ -12,6 +12,7 @@
 //******************************************************************************
 //                      Include
 //******************************************************************************
+#include "Std_Types.h"
 
 //******************************************************************************
 //                      Define
@@ -40,18 +41,18 @@
 //******************************************************************************
 //                      Declaration of global variable
 //******************************************************************************
-extern signed char teplota;
-extern unsigned int desetiny;
+extern sint8 teplota;
+extern uint16 desetiny;
 
 //******************************************************************************
 //                      Declaration of global function
 //******************************************************************************
-unsigned char ow_detect_presence(void);
+uint8 ow_detect_presence(void);
 void ow_write_one(void);
 void ow_write_zero(void);
-unsigned char ow_read_bit(void);
-void ow_write_byte(unsigned char tosend);
-unsigned char ow_read_byte(void);
+uint8 ow_read_bit(void);
+void ow_write_byte(uint8 tosend);
+uint8 ow_read_byte(void);
 void temp_in(void);
 
 //******************************************************************************
