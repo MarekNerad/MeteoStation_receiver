@@ -49,6 +49,7 @@
 //******************************************************************************
 //                      Declaration of global variable
 //******************************************************************************
+extern uint8 refresh;
 
 //******************************************************************************
 //                      Declaration of global function
@@ -68,7 +69,8 @@ void cursor_shift_right(void);
 void cursor_shift_left(void);
 void function_set(void);
 void marks_def(void);
-void lcd_init(void);
+void Lcd_Init(void);
+void Lcd_Menu(void);
 void lcd_switch(uint8 ligh_state);
 
 //******************************************************************************

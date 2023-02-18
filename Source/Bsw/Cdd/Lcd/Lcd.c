@@ -11,6 +11,7 @@
 //                      Include
 //******************************************************************************
 #include "Lcd.h"
+#include "Dallas.h"
 
 #include <avr/io.h>
 #define F_CPU 8000000UL
@@ -44,7 +45,7 @@
 //******************************************************************************
 //                      Definition & Declaration of global variable
 //******************************************************************************
-
+uint8 refresh;
 //******************************************************************************
 //                      Definition & Declaration of static variable
 //******************************************************************************
@@ -200,7 +201,7 @@ void marks_def(void)
    lcd_instr(0x80);
 }
 
-void lcd_init(void)
+void Lcd_Init(void)
 {
    DDRD |= 0x7FU;
    
@@ -215,6 +216,48 @@ void lcd_init(void)
    display_clear();
 
    entry_mode_set();
+}
+
+// todo doxy
+void Lcd_Menu(void)
+{
+	lcd_gotoxy(0,1);
+	lcd_string("T_in:");
+	lcd_gotoxy(5,1);
+	lcd_int(teplota);
+	lcd_string(".");
+	lcd_int(desetiny);
+	
+	//lcd_gotoxy(0,2);
+	//lcd_string("T_out:");
+	//lcd_gotoxy(6,2);
+	//lcd_int(temp/100);
+	//lcd_string(",");
+	//lcd_int(abs(temp%100));
+	
+	//lcd_gotoxy(0,3);
+	//lcd_string("Hum_out:");
+	//lcd_gotoxy(8,3);
+	//lcd_int(humi/10);
+	//lcd_string(",");
+	//lcd_int(abs(humi%10));
+	
+	/*lcd_gotoxy(0,4);
+	lcd_string("Press:");
+	lcd_gotoxy(6,4);
+	lcd_int(press);*/	
+	
+	//lcd_gotoxy(10,1);
+	//lcd_string("Dew:");
+	//lcd_gotoxy(15,1);
+	//lcd_int(dew/10);
+	//lcd_string(",");
+	//lcd_int(abs(dew%10));
+	
+	lcd_gotoxy(0,4);
+	lcd_string("Stat:");
+	lcd_gotoxy(6,4);
+	lcd_int(refresh);
 }
 
 void lcd_switch(uint8 ligh_state)

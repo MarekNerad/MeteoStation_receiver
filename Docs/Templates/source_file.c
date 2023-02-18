@@ -1,5 +1,5 @@
 //******************************************************************************
-//! \file        main.c
+//! \file        <FILENAME>.c
 //! \date        12-02-2023
 //! \author      Nerad
 //! \brief       <MODULE_DESCRIPTION>
@@ -10,18 +10,6 @@
 //******************************************************************************
 //                      Include
 //******************************************************************************
-#include <avr/io.h>
-#define F_CPU 8000000UL
-#include <util/delay.h>
-#include <avr/sleep.h>
-
-#include "Lcd.h"
-#include "Dallas.h"
-#include "Receiver.h"
-#include "Timer.h"
-#include "Std_Types.h"
-#include "Os.h"
-#include <avr/interrupt.h>
 
 //******************************************************************************
 //                      Define
@@ -62,32 +50,3 @@
 //******************************************************************************
 //                      Definition of global function
 //******************************************************************************
-
-int main(void)
-{
-   // Init Dallas temp sensor
-   Dallas_Init();
-   
-   // Init the alphanumeric display
-   Lcd_Init();
-
-   _delay_ms(10);
-
-   // Init LCD menu
-   Lcd_Menu();
-   
-   _delay_ms(10);
-   
-   Timer_init();
-   
-   /* Enable global interrupt flag */
-   sei();
-
-   while(1)
-   {
-      // for the tasks see the Os.c
-      
-      // Call the OS
-      Os_cyclic();
-   }   
-}

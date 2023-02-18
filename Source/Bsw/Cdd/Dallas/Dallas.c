@@ -10,7 +10,7 @@
 //******************************************************************************
 //                      Include
 //******************************************************************************
-#include "Ds18b20.h"
+#include "Dallas.h"
 
 #include <avr/io.h>
 #define F_CPU 8000000UL  // 8 MHz - takt MCU
@@ -58,6 +58,14 @@ uint16 desetiny;
 //******************************************************************************
 //                      Definition of global function
 //******************************************************************************
+
+// todo doxy
+void Dallas_Init(void)
+{
+   // Enable voltage
+   DDRB |= (1<<DDB0);
+   PORTB |= (1<<PB0);
+}
 
 // provede reset a test prezence ds-18b20 na sbernici
 uint8 ow_detect_presence(void)
@@ -129,7 +137,7 @@ unsigned char ow_read_byte(void)
 // nacte teplotu z teplomeru a vrati ji ve formatu 1000+t*10
 // priklad: 23.5°C = 1235,  -10.5°C = 895
 // tento format lze snadneji zpracovavat nez nejake floaty (zerou moc pameti)
-void temp_in(void)
+void Dallas_Temp_In(void)
 {
    uint8 data_lo, data_hi;
    

@@ -10,8 +10,8 @@
 //******************************************************************************
 //                      Include
 //******************************************************************************
-#include "Nrf24l01.h"
-#include "Nrf24l01registers.h"
+#include "Receiver.h"
+#include "ReceiverRegs.h"
 
 #include <avr/io.h>
 #include <avr/interrupt.h>

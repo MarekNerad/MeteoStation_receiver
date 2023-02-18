@@ -1,31 +1,26 @@
 //******************************************************************************
-//! \file        main.c
+//! \file        Ds18b20.h
 //! \date        12-02-2023
 //! \author      Nerad
 //! \brief       <MODULE_DESCRIPTION>
 //******************************************************************************
 //   This module is classified as QM.
 //******************************************************************************
+#ifndef DS18B20_H
+#define DS18B20_H
 
 //******************************************************************************
 //                      Include
 //******************************************************************************
-#include <avr/io.h>
-#define F_CPU 8000000UL
-#include <util/delay.h>
-#include <avr/sleep.h>
-
-#include "Lcd.h"
-#include "Dallas.h"
-#include "Receiver.h"
-#include "Timer.h"
 #include "Std_Types.h"
-#include "Os.h"
-#include <avr/interrupt.h>
 
 //******************************************************************************
 //                      Define
 //******************************************************************************
+#define PDD7         0x80            // na PD7 je pøipojeno èidlo
+#define TX          DDRD |= PDD7
+#define RX          DDRD &= ~PDD7
+#define RXPIN       PIND&PDD7
 
 //******************************************************************************
 //                      Define with parameter
@@ -44,50 +39,29 @@
 //******************************************************************************
 
 //******************************************************************************
-//                      Declaration of static function
+//                      Declaration of global variable
+//******************************************************************************
+extern sint8 teplota;
+extern uint16 desetiny;
+
+//******************************************************************************
+//                      Declaration of global function
+//******************************************************************************
+void Dallas_Init(void);
+uint8 ow_detect_presence(void);
+void ow_write_one(void);
+void ow_write_zero(void);
+uint8 ow_read_bit(void);
+void ow_write_byte(uint8 tosend);
+uint8 ow_read_byte(void);
+void Dallas_Temp_In(void);
+
+//******************************************************************************
+//                      Declaration of inline function
 //******************************************************************************
 
 //******************************************************************************
-//                      Definition & Declaration of global variable
+//                      Definition of inline function
 //******************************************************************************
 
-//******************************************************************************
-//                      Definition & Declaration of static variable
-//******************************************************************************
-
-//******************************************************************************
-//                      Definition of static function
-//******************************************************************************
-
-//******************************************************************************
-//                      Definition of global function
-//******************************************************************************
-
-int main(void)
-{
-   // Init Dallas temp sensor
-   Dallas_Init();
-   
-   // Init the alphanumeric display
-   Lcd_Init();
-
-   _delay_ms(10);
-
-   // Init LCD menu
-   Lcd_Menu();
-   
-   _delay_ms(10);
-   
-   Timer_init();
-   
-   /* Enable global interrupt flag */
-   sei();
-
-   while(1)
-   {
-      // for the tasks see the Os.c
-      
-      // Call the OS
-      Os_cyclic();
-   }   
-}
+#endif // DS18B20_H

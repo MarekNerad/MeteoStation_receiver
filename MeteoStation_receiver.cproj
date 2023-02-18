@@ -40,19 +40,35 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>custom</avrtool>
+    <avrtool>com.atmel.avrdbg.tool.stk500</avrtool>
     <avrtoolserialnumber />
     <avrdeviceexpectedsignature>0x1E9307</avrdeviceexpectedsignature>
     <custom>
-      <ToolOptions xmlns="">
+      <ToolOptions>
         <InterfaceProperties>
         </InterfaceProperties>
+        <InterfaceName>
+        </InterfaceName>
       </ToolOptions>
-      <ToolType xmlns="">custom</ToolType>
-      <ToolNumber xmlns="">
+      <ToolType>custom</ToolType>
+      <ToolNumber>
       </ToolNumber>
-      <ToolName xmlns="">Custom Programming Tool</ToolName>
+      <ToolName>Custom Programming Tool</ToolName>
     </custom>
+    <avrtoolinterface>ISP</avrtoolinterface>
+    <com_atmel_avrdbg_tool_stk500>
+      <ToolOptions>
+        <InterfaceProperties>
+          <IspClock>125000</IspClock>
+        </InterfaceProperties>
+        <InterfaceName>ISP</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.stk500</ToolType>
+      <ToolNumber>
+      </ToolNumber>
+      <ToolName>STK500</ToolName>
+    </com_atmel_avrdbg_tool_stk500>
+    <avrtoolinterfaceclock>125000</avrtoolinterfaceclock>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -110,15 +126,17 @@
   </avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
-      <Value>../Source/Bsw/Cdd/Ds18b20</Value>
       <Value>../Source/Bsw/Cdd/Lcd</Value>
-      <Value>../Source/Bsw/Cdd/Nrf24l01</Value>
       <Value>../Source/Cfg</Value>
       <Value>../Source/Rte</Value>
       <Value>../Source/Bsw/Mcal/Port</Value>
       <Value>../Source/Bsw/Mcal/Spi</Value>
       <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
       <Value>../Source/Rte/Std_Types</Value>
+      <Value>../Source/Bsw/Cdd/Dallas</Value>
+      <Value>../Source/Bsw/Cdd/Receiver</Value>
+      <Value>../Source/Bsw/Mcal/Timer</Value>
+      <Value>../Source/Bsw/Os</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
@@ -145,23 +163,24 @@
     <Folder Include="Source\Appl\" />
     <Folder Include="Source\Bsw\" />
     <Folder Include="Source\Bsw\Cdd\" />
-    <Folder Include="Source\Bsw\Cdd\Ds18b20\" />
+    <Folder Include="Source\Bsw\Cdd\Dallas\" />
     <Folder Include="Source\Bsw\Cdd\Lcd\" />
-    <Folder Include="Source\Bsw\Cdd\Nrf24l01\" />
+    <Folder Include="Source\Bsw\Cdd\Receiver\" />
     <Folder Include="Source\Bsw\IoHwAb\" />
     <Folder Include="Source\Bsw\Mcal\" />
     <Folder Include="Source\Bsw\Mcal\Port" />
     <Folder Include="Source\Bsw\Mcal\Spi" />
+    <Folder Include="Source\Bsw\Mcal\Timer\" />
     <Folder Include="Source\Bsw\Os\" />
     <Folder Include="Source\Cfg\" />
     <Folder Include="Source\Rte\" />
     <Folder Include="Source\Rte\Std_Types" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\Bsw\Cdd\Ds18b20\Ds18b20.c">
+    <Compile Include="Source\Bsw\Cdd\Dallas\Dallas.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\Bsw\Cdd\Ds18b20\Ds18b20.h">
+    <Compile Include="Source\Bsw\Cdd\Dallas\Dallas.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\Bsw\Cdd\Lcd\Lcd.c">
@@ -170,13 +189,13 @@
     <Compile Include="Source\Bsw\Cdd\Lcd\Lcd.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\Bsw\Cdd\Nrf24l01\Nrf24l01.c">
+    <Compile Include="Source\Bsw\Cdd\Receiver\Receiver.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\Bsw\Cdd\Nrf24l01\Nrf24l01.h">
+    <Compile Include="Source\Bsw\Cdd\Receiver\Receiver.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\Bsw\Cdd\Nrf24l01\Nrf24l01registers.h">
+    <Compile Include="Source\Bsw\Cdd\Receiver\ReceiverRegs.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\Bsw\Mcal\Port\Port.c">
@@ -189,6 +208,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\Bsw\Mcal\Spi\Spi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\Bsw\Mcal\Timer\Timer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\Bsw\Mcal\Timer\Timer.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\Bsw\Os\Os.h">
