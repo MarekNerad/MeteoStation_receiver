@@ -21,6 +21,24 @@
 #define NULL_PTR ((void*)0)
 #endif
 
+#ifndef TRUE
+/** @brief is meant to be used for type #stdBool
+ *  @detail lowercase used due to generated pin configuration structure
+ */
+#define TRUE 1U
+#else
+#error "Already defined type: true !"
+#endif
+
+#ifndef FALSE
+/** @brief is meant to be used for type #stdBool
+ *  @detail lowercase used due to generated pin configuration structure
+ */
+#define FALSE 0U
+#else
+#error "Already defined type: false !"
+#endif
+
 /** @brief maximum value for defined #uint8 */
 #define STD_UINT8_MAX 0xFFU
 /** @brief minimum value for defined #uint8 */
